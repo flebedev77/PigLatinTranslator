@@ -1,0 +1,10 @@
+* {
+    font-family: sans-serif;
+}
+main {
+    display: flex;
+    gap: 5px;
+}
+main > * {
+    width: min-content;
+}
