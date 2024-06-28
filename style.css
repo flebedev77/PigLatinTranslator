@@ -8,3 +8,15 @@ main {
 main > * {
     width: min-content;
 }
+
+p, label {
+    width: max-content !important;
+}
+
+body {
+    padding: 10px;
+}
+
+label {
+    text-align: center;
+}

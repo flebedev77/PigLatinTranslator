@@ -12,6 +12,7 @@ const TRANSLATE = {
 }
 
 function translate(input) { // From english into pig latin  (One token at a time)
+    input = input.removeAll(".").removeAll("/").removeAll("?").removeAll(",").removeAll("(").removeAll(")").removeAll(";").removeAll('"').removeAll("'").removeAll(":").removeAll("~").removeAll("`").removeAll("!").removeAll("@").removeAll("#").removeAll("$").removeAll("%").removeAll("^").removeAll("&").removeAll("*").removeAll("-").removeAll("_").removeAll("+").removeAll("=").removeAll("{").removeAll("}").removeAll("[").removeAll("]").removeAll("\\").removeAll("\n").removeAll("\r").removeAll("|").removeAll("<").removeAll(">");
     input = input.substring(1) + input.charAt(0) + "ay";
     return input;
 }
@@ -28,7 +29,7 @@ input.oninput = function () {
     translatePhrase(TRANSLATE.TYPE.EnglishToPig);
 }
 
-pigInput.oninput = function() {
+pigInput.oninput = function () {
     translatePhrase(TRANSLATE.TYPE.PigToEnglish);
 }
 
@@ -38,6 +39,10 @@ function translatePhrase(lang) { // Seperates the phrase and translates them by 
     for (let i = 0; i < tokens.length; i++) {
         finalStr += (i == tokens.length - 1) ? (lang) ? translate(tokens[i]) : from(tokens[i]) : (lang) ? translate(tokens[i]) + " " : from(tokens[i]) + " ";
     }
-    if (lang) output.innerText = finalStr;
-    else englishOutput.innerText = finalStr;
+    if (lang) output.innerText = finalStr.replaceAll("\n", " ");
+    else englishOutput.innerText = finalStr.replaceAll("\n", " ");
+}
+
+String.prototype.removeAll = function (str) {
+    return this.replaceAll(str, "");
 }
